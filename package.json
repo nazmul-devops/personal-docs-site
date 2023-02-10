@@ -1,0 +1,19 @@
+{
+  "name": "nazmul-docs",
+  "version": "0.0.1",
+  "description": "nazmul-rnd-docs",
+  "main": "index.js",
+  "authors": {
+    "name": "Nazmul Islam (Swapan)",
+    "email": "nazmul.devops@gmail.com"
+  },
+  "repository": "nazmul/nazmul-docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
