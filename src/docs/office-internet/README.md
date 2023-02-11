@@ -91,7 +91,7 @@ In this step we can connect our end devices to the WiFi through these access poi
 ```
 Thanks & Regards
 Nazmul Islam
-Cloud DevOps (Intern)
+Cloud DevOps Engineer
 InNeed Cloud
 ```
 
