@@ -18,7 +18,7 @@ by Kallol Biswas & Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
 
 > To demonstrate how Docker Swarm works, we have a simple cluster that comprises a Swarm Manager node and two worker nodes as shown. The Manager nodes handle all the cluster management tasks while the worker nodes will run the containers.
 
-- swarm-manager                    swarm-manager-servcer-ip
+- docker-manager                   docker-manager-servcer-ip
 - worker-node-1                    worker-node-1-ip
 - worker-node-2                    worker-node-2-ip
 
@@ -27,7 +27,7 @@ by Kallol Biswas & Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
 To start off, log into each of the nodes and update the /etc/hosts file with the following entries:
 
 ```
-swarm-manager          swarm-manager-servcer-ip
+swarm-manager          docker-manager-servcer-ip
 worker-node-1          worker-node-1-ip
 worker-node-2          worker-node-2-ip
 ```
@@ -40,7 +40,7 @@ ping -c 4 worker-node-2-ip
 On worker Node 1
 
 ```sh
-ping -c 4 swarm-manager-servcer-ip
+ping -c 4 docker-manager-servcer-ip
 ping -c 4 worker-node-2-ip
 ```
 On worker Node 2
@@ -141,10 +141,10 @@ You should get the following output displaying all the nodes in the cluster.
 
 ### Step 5) Test Docker Swarm Installation
 
-To test docker swarm installation, head over to the manager node and deploy a container application to the cluster. In this example, we are deploying an Nginx web server container and mapping it to port 8080 on the host.
+To test docker swarm installation, head over to the manager node and deploy a container application to the cluster. In this example, we are deploying an Nginx web server container and mapping it to port 80 on the host.
 
 ```sh
-sudo docker service create --name web-server --publish 8080:80 nginx:latest
+sudo docker service create --name trmis-webapp --publish 80:80 kallolinneed/frontend_webapp:v2
 ```
 ![nginx-based-service](./Nginx-Based-Service-docker-swarm.jpg)
 
@@ -157,10 +157,10 @@ sudo docker service ls
 
 ### Step 6) Create replicas of the service
 
-Finally, create three replicas of the service and scale them across both the Docker manager and the worker nodes.
+Finally, create ten replicas of the service and scale them across both the Docker manager and the worker nodes.
 
 ```sh
-sudo docker service scale web-server=3
+sudo docker service scale trmis-webapp=10
 ```
 ![service-scale](./Service-Scale-docker-Swarm.jpg)
 
@@ -168,14 +168,35 @@ Next, confirm the status of the replicas. This time around, you will notice that
 
 ![service-verify](./Verify-Service-inDocker-Swarm.jpg)
 
-At this point, Nginx web server container should be running across all the nodes in the cluster on port 8080. To confirm this, head over to your browser, and access the web server from all the nodes.
+At this point, Nginx web server container should be running across all the nodes in the cluster on port 80. To confirm this, head over to your browser, and access the web server from all the nodes.
 
-- http://manager-node:8080
+- http://docker-manager.com or http://192.168.10.135
 
-- http://worker-node-1:8080
+- http://worker-node-1-ip
 
-- http://worker-node-2:8080
+- http://worker-node-2-ip
 
+
+### Step 7) Docker Swarm Visualizer
+
+Demo container that displays Docker services running on a Docker Swarm in a diagram.
+
+This works only with Docker swarm mode which was introduced in Docker 1.12. These instructions presume you are running on the master node and you already have a Swarm running.
+
+Each node in the swarm will show all tasks running on it. When a service goes down it'll be removed. When a node goes down it won't, instead the circle at the top will turn red to indicate it went down. Tasks will be removed. Occasionally the Remote API will return incomplete data, for instance the node can be missing a name. The next time info for that node is pulled, the name will update.
+
+```sh
+  sudo docker service create \
+  --name=viz \
+  --publish=8080:8080/tcp \
+  --constraint=node.role==manager \
+  --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+  dockersamples/visualizer
+
+```
+> To varify docker swarm visualization hit docker-swarm-manager-node-ip:8080
+
+![docker-swarm-visualization](./swarm-viz.png)
 
 
 
