@@ -34,3 +34,8 @@ A document about kubernetes dev environemt configuration on local machine with m
 
 By Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
 
+## [Deploying Static web application to AWS S3 & Cloudfront](/docs/aws-static-webapp-deploy/)
+
+A document about static webapp deplying on aws using S3 and CloudFront.
+
+By Nazmul Islam (Swapan) - DevOps Engineer
