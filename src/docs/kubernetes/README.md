@@ -6,13 +6,12 @@ sidebar: auto
 
 By Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
 
-### What is Kubernetes? 
-
+## What is Kubernetes? 
 > Kubernetes (often abbreviated as "K8s") is an open-source system for automating the deployment, scaling, and management of containerized applications. It provides a way to manage multiple containers as a single unit, making it easier to deploy, scale, and manage applications in a microservices architecture.
 
 > Kubernetes was originally developed by Google, and is now maintained by the Cloud Native Computing Foundation (CNCF). It is widely adopted and has become the de facto standard for managing containerized applications in production.
 
-### Why we should use Kubernetes?
+## Why we should use Kubernetes?
 
 There are several reasons why organizations choose to use Kubernetes:
 
@@ -30,9 +29,7 @@ There are several reasons why organizations choose to use Kubernetes:
 
 Overall, Kubernetes helps organizations to build, deploy, and manage large-scale, complex applications more efficiently and effectively.
 
-### Kubernetes Main Components & Architechture:
-
-
+## Kubernetes Main Components & Architechture:
 > Kubernetes is an open-source platform for automating deployment, scaling, and management of containerized applications. The following are the main components of a Kubernetes system:
 
 1. Master node: The Master node is the brain of a Kubernetes cluster and it is responsible for the overall management of the cluster. It exposes the Kubernetes API, and it contains the following components:
@@ -43,7 +40,7 @@ Overall, Kubernetes helps organizations to build, deploy, and manage large-scale
 - kube-controller-manager: Handles the state of the cluster, such as replication controllers and endpoints.
 - kube-scheduler: Assigns work to nodes.
   
-1. Worker node: Worker nodes are where containers are deployed and run. A worker node contains the following components:
+2. Worker node: Worker nodes are where containers are deployed and run. A worker node contains the following components:
 
 - kubelet: Communicates with the Master node and makes sure that containers are running as expected.
 - kube-proxy: Acts as a network proxy and load balancer for service requests.
@@ -73,7 +70,7 @@ Ingress provides an easy and efficient way to expose your applications to extern
 
 These are the main components of a Kubernetes system. Understanding these components is crucial for effectively managing and deploying applications on a Kubernetes cluster.
 
-### Minikube Setup on Local machine
+## Minikube Setup on Local machine
 
 Minikube is a tool that allows you to run a single-node Kubernetes cluster on your local machine. You can also set it up on a remote server. Here's how you can set up Minikube on a server:
 
@@ -100,33 +97,28 @@ This will give you the status of your Minikube cluster, including the Kubernetes
 minikube dashboard
 ```
 
-### Kubectl commands
+## Kubectl commands
 
 Here's a list of some common kubectl commands:
 
-kubectl get: retrieves information about resources in your cluster. For example, kubectl get pods retrieves information about all the pods in your cluster.
+- kubectl get: retrieves information about resources in your cluster. For example, kubectl get pods retrieves information about all the pods in your cluster.
 
-kubectl describe: provides detailed information about a specific resource in your cluster. For example, kubectl describe pod <pod_name> provides information about a specific pod.
+- kubectl describe: provides detailed information about a specific resource in your cluster. For example, kubectl describe pod <pod_name> provides information about a specific pod.
 
-kubectl apply: creates or updates resources in your cluster. You specify the resource definition in a file and use the apply command to apply it to the cluster.
+- kubectl apply: creates or updates resources in your cluster. You specify the resource definition in a file and use the apply command to apply it to the cluster.
 
-kubectl delete: deletes resources from your cluster. For example, kubectl delete pod <pod_name> deletes a specific pod.
+- kubectl delete: deletes resources from your cluster. For example, kubectl delete pod <pod_name> deletes a specific pod.
 
-kubectl create: creates resources in your cluster. For example, kubectl create -f <file_name> creates resources specified in a file.
+- kubectl create: creates resources in your cluster. For example, kubectl create -f <file_name> creates resources specified in a file.
 
-kubectl edit: edits a resource in your cluster. For example, kubectl edit pod <pod_name> opens an editor for you to edit the specified pod.
+- kubectl edit: edits a resource in your cluster. For example, kubectl edit pod <pod_name> opens an editor for you to edit the specified pod.
 
-kubectl exec: executes a command in a container in a pod. For example, kubectl exec -it <pod_name> -- <command> executes the specified command in a container in the specified pod.
+- kubectl exec: executes a command in a container in a pod. For example, kubectl exec -it <pod_name> command executes the specified command in a container in the specified pod.
 
-kubectl logs: retrieves logs from a container in a pod. For example, kubectl logs <pod_name> retrieves logs from the specified pod.
+- kubectl logs: retrieves logs from a container in a pod. For example, kubectl logs <pod_name> retrieves logs from the specified pod.
 
-kubectl port-forward: forwards a local port to a port on a pod. For example, kubectl port-forward <pod_name> 8080:80 forwards local port 8080 to port 80 on the specified pod.
+- kubectl port-forward: forwards a local port to a port on a pod. For example, - kubectl port-forward <pod_name> 8080:80 forwards local port 8080 to port 80 on the specified pod.
 
-kubectl label: adds or modifies labels on a resource. For example, kubectl label pod <pod_name> app=myapp adds the label "app=myapp" to the specified pod.
+- kubectl label: adds or modifies labels on a resource. For example, kubectl label pod <pod_name> app=myapp adds the label "app=myapp" to the specified pod.
 
 These are just a few examples of the many kubectl commands available. You can find more information about kubectl and its commands in the official Kubernetes documentation.
-
-
-
-
-

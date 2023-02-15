@@ -39,3 +39,18 @@ By Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
 A document about static webapp deplying on aws using S3 and CloudFront.
 
 By Nazmul Islam (Swapan) - DevOps Engineer
+
+## [Php Laravel web application deployment on aws server](/docs/laravel-project-deploy/)
+
+A document about Deploying a 3 tier php Laravel web application to aws server.
+
+By Nazmul Islam (Swapan) - DevOps Engineer
+
+## [Bangladesh Location Data](/devs/Bangladesh-Location-Data/)
+A dataset about Division, District and Sub District of Bangladesh.
+
+Updated on November 2021
+
+by Shaman Sharif - John Cena Engineer
+
+

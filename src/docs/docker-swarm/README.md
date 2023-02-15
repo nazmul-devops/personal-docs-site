@@ -97,7 +97,7 @@ Once installed, the Docker daemon starts automatically. You can verify that the 
 ```sh
 sudo systemctl status docker
 ```
-![docker-service-status](./Docker-Service-Status-Ubuntu-22-04.jpg)
+![docker-service-status](./images/Docker-Service-Status-Ubuntu-22-04.jpg)
 Additionally, be sure to enable the Docker service so that it starts automatically on boot time.
 
 ```sh
@@ -113,7 +113,7 @@ To create a Docker Swarm Cluster, run the command:
 ```sh
 sudo docker swarm init --advertise-addr swarm-manager-servcer-ip
 ```
-![docker-swarm-init](./Docker-Swarm-Init-Ubuntu-22-04.jpg)
+![docker-swarm-init](./images/Docker-Swarm-Init-Ubuntu-22-04.jpg)
 
 Once Docker Swarm has been initialized, a command for joining the worker nodes to the cluster will be displayed on the terminal. Copy the command as you will need to run it on each of the worker nodes as previously mentioned.
 
@@ -128,7 +128,7 @@ Output
 
 This node joined a swarm as a worker
 
-![docker-swarm-join-worker](./Docker-Swarm-Join-Worker-Nodes-Ubuntu.jpg)
+![docker-swarm-join-worker](./images/Docker-Swarm-Join-Worker-Nodes-Ubuntu.jpg)
 
 Next, confirm that all the nodes have joined the cluster as follows.
 
@@ -137,7 +137,7 @@ sudo docker node ls
 ```
 You should get the following output displaying all the nodes in the cluster.
 
-![node-list-in-docker-swarm-manager](./List-Nodes-in-docker-Swarm-Ubuntu.jpg)
+![node-list-in-docker-swarm-manager](./images/List-Nodes-in-docker-Swarm-Ubuntu.jpg)
 
 ### Step 5) Test Docker Swarm Installation
 
@@ -146,14 +146,14 @@ To test docker swarm installation, head over to the manager node and deploy a co
 ```sh
 sudo docker service create --name trmis-webapp --publish 80:80 kallolinneed/frontend_webapp:v2
 ```
-![nginx-based-service](./Nginx-Based-Service-docker-swarm.jpg)
+![nginx-based-service](./images/Nginx-Based-Service-docker-swarm.jpg)
 
 Next, verify the status of the application service deployed.
 
 ```sh
 sudo docker service ls
 ```
-![service-list](./List-Service-in-Docker-Swarm.jpg)
+![service-list](./images/List-Service-in-Docker-Swarm.jpg)
 
 ### Step 6) Create replicas of the service
 
@@ -162,11 +162,11 @@ Finally, create ten replicas of the service and scale them across both the Docke
 ```sh
 sudo docker service scale trmis-webapp=10
 ```
-![service-scale](./Service-Scale-docker-Swarm.jpg)
+![service-scale](./images/Service-Scale-docker-Swarm.jpg)
 
 Next, confirm the status of the replicas. This time around, you will notice that we have 3 replicas.
 
-![service-verify](./Verify-Service-inDocker-Swarm.jpg)
+![service-verify](./images/Verify-Service-inDocker-Swarm.jpg)
 
 At this point, Nginx web server container should be running across all the nodes in the cluster on port 80. To confirm this, head over to your browser, and access the web server from all the nodes.
 
@@ -196,9 +196,35 @@ Each node in the swarm will show all tasks running on it. When a service goes do
 ```
 > To varify docker swarm visualization hit docker-swarm-manager-node-ip:8080
 
-![docker-swarm-visualization](./swarm-viz.png)
+![docker-swarm-visualization](./images/swarm-viz.png)
 
 
+### Postgresql and pgadmin 4 Install 
+
+```sh
+Root
+===================================
+apt update
+apt install postgresql postgresql-contrib
+systemctl start postgresql.service
+systemctl status postgresql.service
+systemctl enable postgresql.service
+sudo -i -u postgres
+psql
+=========================================
+create user inneed with password ‘Inneed@cloud’;
+create database inneeddb;
+grant all privileges on database inneeddb to inneed;
+exit;
+
+
+
+$ curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+$ sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+sudo apt install pgadmin4
+
+```
 
 ### Extra Configuration files for our app
 
