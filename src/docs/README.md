@@ -53,4 +53,8 @@ Updated on November 2021
 
 by Shaman Sharif - John Cena Engineer
 
+## [ipics Cloudflare DNS Configuration](/docs/cloudflare-dns-config/)
 
+A document about Cloud Flare DNS Configuration with AWS Route 53.
+
+By Nazmul Islam (Swapan) - DevOps Engineer
