@@ -47,6 +47,7 @@ A document about Deploying a 3 tier php Laravel web application to aws server.
 By Nazmul Islam (Swapan) - DevOps Engineer
 
 ## [Bangladesh Location Data](/devs/Bangladesh-Location-Data/)
+
 A dataset about Division, District and Sub District of Bangladesh.
 
 Updated on November 2021
@@ -58,3 +59,9 @@ by Shaman Sharif - John Cena Engineer
 A document about Cloud Flare DNS Configuration with AWS Route 53.
 
 By Nazmul Islam (Swapan) - DevOps Engineer
+
+## [PostgreSQL Database Automatic Backup with cronjob](/docs/postgresql-database-backup/)
+
+A document about PostgreSQL Database Automatic backup with cronjob.
+
+By Kallol Biswas & Nazmul Islam (Swapan) - DevOps Engineer
