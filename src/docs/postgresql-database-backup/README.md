@@ -4,7 +4,7 @@ sidebar: auto
 
 # PostgreSQL Database Automatic Backup with cronjob
 
-By Kallol Biswas & Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
+By Kallol Biswas & Nazmul Islam (Swapan) - Junior DevOps Engineer at InNeed Cloud
 
 ## What is Database Backup?
 
