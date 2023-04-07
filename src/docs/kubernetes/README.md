@@ -1,13 +1,6 @@
 sidebar: auto
 
-# #Kubernetes Tutorial
-
-########################
-**# Author: Nazmul Islam**
-**# Date: 08 April 2023**
-**# Topic: Kubernetes**
-**# Version: V1**
-#########################
+# Kubernetes Tutorial
 
 **_By: Nazmul Islam - Junior DevOps Engineer_**
 
@@ -136,8 +129,9 @@ eth0:
 addresses: [192.168.10.100/24]
 nameservers:
 addresses: [8.8.8.8]
-routes: - to: default
-via: 192.168.10.1
+routes:
+  - to: default
+  via: 192.168.10.1
 ```
 
 #### Installing containerd
