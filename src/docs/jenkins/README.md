@@ -40,7 +40,7 @@ Ref: https://www.jenkins.io/doc/book/installing/docker/
 
 ## How to install jenkins on ubuntu server.
 
-```
+```sh
 sudo apt update
 
 sudo apt install openjdk-8-jdk wget gnupg
@@ -65,7 +65,7 @@ sudo systemctl status jenkins
 
 ## How to install jenkins on Redhat/Rocky Linux server.
 
-```
+```sh
 sudo wget -O /etc/yum.repos.d/jenkins.repo \
     https://pkg.jenkins.io/redhat-stable/jenkins.repo
 
