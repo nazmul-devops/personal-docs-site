@@ -4,11 +4,23 @@ Research & Development documentations
 
 ---
 
+## [DevOps Important Docs](/docs/DevOps/)
+
+A document about DevOps.
+
+by Nazmul Islam - Junior DevOps Engineer
+
 ## [Django Stuff](/docs/django-stuff/)
 
 A document about Django and DRF.
 
 by Hachib
+
+## [Cloudflare DNS Configuration](/docs/cloudflare-dns-config/)
+
+A document about Cloudflare DNS Configuration.
+
+By Nazmul Islam - Junior DevOps Engineer
 
 ## [InNeed Office Network Infrastructure](/docs/office-internet/)
 
@@ -65,3 +77,9 @@ By Nazmul Islam (Swapan) - DevOps Engineer
 A document about PostgreSQL Database Automatic backup with cronjob.
 
 By Kallol Biswas & Nazmul Islam (Swapan) - DevOps Engineer
+
+## [Jenkins Tutorial](/docs/jenkins/)
+
+A document about Jenkins Tutorial.
+
+By Nazmul Islam (Swapan) - Junior DevOps Engineer

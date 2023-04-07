@@ -4,12 +4,13 @@ sidebar: auto
 
 # Kubernetes
 
-By Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
+By Nazmul Islam (Swapan) - Junior DevOps Engineer
 
-## What is Kubernetes? 
-> Kubernetes (often abbreviated as "K8s") is an open-source system for automating the deployment, scaling, and management of containerized applications. It provides a way to manage multiple containers as a single unit, making it easier to deploy, scale, and manage applications in a microservices architecture.
+## What is Kubernetes?
 
-> Kubernetes was originally developed by Google, and is now maintained by the Cloud Native Computing Foundation (CNCF). It is widely adopted and has become the de facto standard for managing containerized applications in production.
+Kubernetes (often abbreviated as "K8s") is an open-source system for automating the deployment, scaling, and management of containerized applications. It provides a way to manage multiple containers as a single unit, making it easier to deploy, scale, and manage applications in a microservices architecture.
+
+Kubernetes was originally developed by Google, and is now maintained by the Cloud Native Computing Foundation (CNCF). It is widely adopted and has become the de facto standard for managing containerized applications in production.
 
 ## Why we should use Kubernetes?
 
@@ -30,7 +31,8 @@ There are several reasons why organizations choose to use Kubernetes:
 Overall, Kubernetes helps organizations to build, deploy, and manage large-scale, complex applications more efficiently and effectively.
 
 ## Kubernetes Main Components & Architechture:
-> Kubernetes is an open-source platform for automating deployment, scaling, and management of containerized applications. The following are the main components of a Kubernetes system:
+
+Kubernetes is an open-source platform for automating deployment, scaling, and management of containerized applications. The following are the main components of a Kubernetes system:
 
 1. Master node: The Master node is the brain of a Kubernetes cluster and it is responsible for the overall management of the cluster. It exposes the Kubernetes API, and it contains the following components:
 
@@ -39,7 +41,7 @@ Overall, Kubernetes helps organizations to build, deploy, and manage large-scale
 - etcd: Distributed key-value store for storing the configuration data.
 - kube-controller-manager: Handles the state of the cluster, such as replication controllers and endpoints.
 - kube-scheduler: Assigns work to nodes.
-  
+
 2. Worker node: Worker nodes are where containers are deployed and run. A worker node contains the following components:
 
 - kubelet: Communicates with the Master node and makes sure that containers are running as expected.
@@ -47,9 +49,7 @@ Overall, Kubernetes helps organizations to build, deploy, and manage large-scale
 - container run time: we can use any container run time environment like docker or containerd
 
 3. Pods: Pods are the smallest and simplest unit in the Kubernetes object model, and they represent a single instance of a running process in your cluster. Pods contain one or more containers, and they provide shared network and storage resources for those containers.
-   
 4. Containers: The applications you want to run are packaged into containers, which are lightweight, stand-alone, and executable packages of software that include everything needed to run the application (code, runtime, system tools, libraries, etc.).
-   
 5. Volumes: Volumes are a way to persist data in your cluster, even if a pod is deleted or recreated. They provide a way to store data on disk or in the cloud, and mount that data into your pods.
 
 6. Services: Services are used to expose your application to the network, allowing it to be accessible from outside the cluster. Services can load balance incoming traffic to multiple pods.
@@ -58,7 +58,7 @@ Overall, Kubernetes helps organizations to build, deploy, and manage large-scale
 
 8. Deployments: Deployments are higher-level objects that manage replicas and provide declarative updates for your applications. You define your desired state in a deployment, and the deployment controller changes the actual state to the desired state.
 
-9.  ConfigMaps and Secrets: ConfigMaps and Secrets are used to store configuration data and secrets, respectively, for your applications. They can be used to store database passwords, API keys, and other sensitive information.
+9. ConfigMaps and Secrets: ConfigMaps and Secrets are used to store configuration data and secrets, respectively, for your applications. They can be used to store database passwords, API keys, and other sensitive information.
 
 10. Ingress: Kubernetes Ingress is a collection of routing rules that govern how external users access services running inside a Kubernetes cluster. It provides a way to expose HTTP and HTTPS routes from outside the cluster to services within the cluster.
 
@@ -89,6 +89,7 @@ minikube start --driver=<driver_name>
 ```sh
 minikube status
 ```
+
 This will give you the status of your Minikube cluster, including the Kubernetes version, the URL of the dashboard, and the state of the cluster.
 
 5. Access the dashboard: To access the Minikube dashboard, you can use the following command:
