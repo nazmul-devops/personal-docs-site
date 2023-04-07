@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "Tech With Nazmul",
+  title: "Learn With Nazmul",
   base: "/nazmul/",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
@@ -44,7 +44,7 @@ module.exports = {
       },
       {
         text: 'business',
-        link: 'https://abcfanbd.com/'
+        link: 'https://kachamaal.com/'
       }
     ],
     sidebar: {
