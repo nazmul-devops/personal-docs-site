@@ -42,8 +42,8 @@ Ref: https://www.jenkins.io/doc/book/installing/docker/
 
 ```sh
 sudo apt update
-
-sudo apt install openjdk-8-jdk wget gnupg
+sudo apt install openjdk-11-jre
+java -version
 
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
@@ -61,6 +61,14 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 
 sudo systemctl status jenkins
+```
+
+### Installation Error handling
+
+```sh
+sudo dpkg --configure -a
+sudo apt-get install -f
+sudo apt-get clean
 ```
 
 ## How to install jenkins on Redhat/Rocky Linux server.

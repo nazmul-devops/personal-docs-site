@@ -6,6 +6,16 @@ sidebar: auto
 
 **_By: Nazmul Islam - Junior DevOps Engineer_**
 
+**Ref Usefull Links:**
+
+1. [YouTube Video - Kubernetes Multi Master Setup with LoadBalancer on Ubuntu](https://youtu.be/Zxozz8P_l5M)
+
+2. [YouTube - Configure HA Cluster using KeepAlived with FloatingIP | Install KeepAlived on Ubuntu](https://youtu.be/uGePZ4Zp34A)
+
+3. [YouTube - Kubernetes - Setup High Availability Multi-Master Cluster](https://youtu.be/KV3C-GQzkpc)
+
+4. [Document Link of 1 No YouTube Video](https://www.learnitguide.net/2021/10/kubernetes-multi-master-setup-with.html)
+
 ## What is Kubernetes?
 
 Kubernetes (often abbreviated as "K8s") is an open-source system for automating the deployment, scaling, and
@@ -123,17 +133,18 @@ The following commands are to be run on the controller/master node (unless other
 Note, a static lease is preferred, but you can use the following Netplan config example to serve as a basis of
 yours if you need to set up a static IP.
 
-```sh
+```yml
 network:
-version: 2
-ethernets:
-eth0:
-addresses: [192.168.10.100/24]
-nameservers:
-addresses: [8.8.8.8]
-routes:
-  - to: default
-  via: 192.168.10.1
+  version: 2
+  ethernets:
+    enp0:
+      dhcp4: no
+      addresses: [192.168.10.10/24]
+      nameservers:
+        addresses: [8.8.8.8]
+      routes:
+        - to: default
+          via: 192.168.10.1
 ```
 
 #### Installing containerd
