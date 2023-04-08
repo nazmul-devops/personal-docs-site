@@ -349,28 +349,295 @@ kubectl get services
 
 And now, you have your very own Kubernetes cluster, congratulations!
 
+## Install Kubernetes Master Node on Rocky Linux 9.
+
+In this configuration guide, you will learn how to install Kubernetes Master Node on Rocky Linux 9 or other RPM based Linux distros.
+Ref: [YouTube Video Link](https://youtu.be/WaAEcyu28BI)
+
+Set Hostname and Name Resolution:
+By using a ssh client, connect with your Linux server as root user.
+
+Set a proper FQDN (Fully Qualified Domain Name) for your Kubernetes server. Also use the Local DNS resolver (/etc/hosts) for name resolution of your hostname.
+
+```sh
+hostnamectl set-hostname k8s-master-node
+echo 192.168.30.110 k8s-master-node >> /etc/hosts
+```
+
+#### Updating Rocky Linux Server:
+
+```sh
+dnf makecache --refresh
+dnf update -y
+cat /etc/rocky-release
+uname -r
+```
+
+#### Switch SELinux to Permissive Mode:
+
+Kubernetes doesn't provide a SELinux policy, therefore you can either switch SELinux target to Permissive mode or manually set the File Context of various Kubernetes files and directories.
+
+For the scope of this article, we recommend that you should set permissive target for SELinux. However, if you are configuring a Kubernetes cluster for production then you should identify the files and set the File Context for them, or you can even create your own SELinux policy.
+
+Execute following commands at Linux bash to set SELinux permissive mode.
+
+```sh
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+```
+
+#### Loading K8s required Kernel Modules:
+
+Kubernetes requires "overlay" and "br_netfilter" Kernel modules. Therefore, you can use following group of commands to permanently enable them.
+
+```sh
+modprobe overlay
+modprobe br_netfilter
+cat > /etc/modules-load.d/k8s.conf << EOF
+overlay
+br_netfilter
+EOF
+```
+
+Set following Kernel parameter as required by Kubernetes software.
+
+```sh
+cat > /etc/sysctl.d/k8s.conf << EOF
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sysctl --system
+
+```
+
+#### Disable Swap in Linux:
+
+To disable Swap for your current session you can use swapoff command. However, for permanently disable the Swap storage you have to comment (#) the respective directive in /etc/fstab file.
+
+Execute following commands to do the same.
+
+```sh
+swapoff -a
+sed -e '/swap/s/^/#/g' -i /etc/fstab
+free -m
+```
+
+#### Install Docker on rockylinux/redhat:
+
+Referance link is: [Rocky Linux Official Docs](https://docs.rockylinux.org/gemstones/docker/#add-the-docker-repository)
+
+## Add the docker repository
+
+Use the `dnf` utility to add the docker repository to your Rocky Linux server. Type:
+
+```sh
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+#### Install the needed packages
+
+Install the latest version of Docker Engine, containerd, and Docker Compose, by running:
+
+```sh
+sudo dnf update
+sudo dnf makecache
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+#### Start and enable the systemd docker service (dockerd)
+
+Use the `systemctl` utility to configure the dockerd daemon to automatically startup with the next system reboot and simultaneously start it for the current session. Type:
+
+```sh
+sudo systemctl --now enable docker
+```
+
+#### Notes
+
+```sh
+docker-ce               : This package provides the underlying technology for building and running docker containers (dockerd)
+docker-ce-cli           : Provides the command line interface (CLI) client docker tool (docker)
+containerd.io           : Provides the container runtime (runc)
+docker-compose-plugin   : A plugin that provides the 'docker compose' subcommand
+
+```
+
+**some extrea packeges:**
+
+```sh
+sudo dnf install epel-release -y
+```
+
+After installation, backup the original containerd configuration file and generate a new file as follows.
+
+```sh
+mv /etc/containerd/config.toml /etc/containerd/config.toml.orig
+containerd config default > /etc/containerd/config.toml
+```
+
+Edit Containerd configuration file by using nano text editor.
+
+```sh
+nano /etc/containerd/config.toml
+```
+
+Locate and set SystemdCgroup parameter in this file, to enable the systemd cgroup driver for Containerd runtime.
+
+```sh
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+  ...
+  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+    SystemdCgroup = true
+```
+
+Enable and start Containerd service.
+
+```sh
+systemctl enable --now containerd.service
+systemctl status containerd.service
+```
+
+#### Configure Linux Firewall:
+
+Therefore, you need to allow these service ports in Linux firewall.
+
+```sh
+firewall-cmd --permanent --add-port={6443,2379,2380,9090,10250,10251,10252}/tcp
+firewall-cmd --reload
+```
+
+#### Installing Kubernetes Software:
+
+To install Orchestration software, you have to add the Kubernetes Official Yum Repository.
+
+The following command will add the Kubernetes repository in your Linux server.
+
+```sh
+cat > /etc/yum.repos.d/k8s.repo << EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+Build the yum cache for Kubernetes yum repository.
+dnf makecache
+```
+
+```sh
+dnf update -y
+dnf install -y {kubelet,kubeadm,kubectl} --disableexcludes=kubernetes
+systemctl enable --now kubelet.service
+systemctl status kubelet
+```
+
+#### Enable Bash Completion for Kubernetes Commands:
+
+```sh
+source <(kubectl completion bash)
+kubectl completion bash > /etc/bash_completion.d/kubectl
+```
+
+#### Installing Flannel CNI Plugin:
+
+Kubernetes supports various CNI (Container Network Interface) plugins, such as AWS VPC, Azure CNI, Cilium, Calico, Flannel, and many more.
+
+In this configuration guide, we are using Flannel CNI plugin. Ensure that this plugin must be installed on each Kubernetes node.
+
+Create a directory and download flanneld file therein.
+
+```sh
+mkdir /opt/bin
+curl -fsSLo /opt/bin/flanneld https://github.com/flannel-io/flannel/releases/download/v0.20.1/flannel-v0.20.1-linux-amd64.tar.gz
+```
+
+Grant execution permissions to flanneld file to make it an executable.
+
+```sh
+chmod +x /opt/bin/flanneld
+```
+
+#### Initializing Kubernetes Control Plane:
+
+Execute the following command to download container images, that are required to create Kubernetes Cluster.
+
+```sh
+kubeadm config images pull
+kubeadm init
+```
+
+Note down the command to add Kubernetes Worker node for later use.
+
+Execute following command to set KUBECONFIG variable for all sessions.
+
+```sh
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /etc/profile.d/k8s.sh
+```
+
+Execute following commands as a user, that is being used to manage your Kubernetes cluster.
+
+```sh
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+Execute kubectl commands to check the status of your Kubernetes cluster.
+
+```sh
+kubectl get nodes
+kubectl cluster-info
+```
+
+After Kubernetes Control Plane is started, run the following command to install the Flannel Pod network plugin. This command will automatically run the "flanneld" binary file and start some flannel pods.
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+```
+
+Check the list of running pods on your Kubernetes cluster.
+
+```sh
+kubectl get pods --all-namespaces
+```
+
+**Congratulations! Your kubernetes master node has been installed successfully.**
+
 ## Kubectl commands
 
-Here's a list of some common kubectl commands:
+Here are some of the most commonly used Kubernetes commands written in raw markdown code:
 
-- kubectl get: retrieves information about resources in your cluster. For example, kubectl get pods retrieves information about all the pods in your cluster.
+### Basic Commands
 
-- kubectl describe: provides detailed information about a specific resource in your cluster. For example, kubectl describe pod <pod_name> provides information about a specific pod.
+`kubectl create` - Create a resource from a file or stdin
+`kubectl apply` - Apply a configuration to a resource by filename or stdin
+`kubectl get` - Display one or many resources
+`kubectl describe` - Show details of a specific resource or group of resources
+`kubectl delete` - Delete resources by filenames, stdin, resources and names, or by resources and label selector
 
-- kubectl apply: creates or updates resources in your cluster. You specify the resource definition in a file and use the apply command to apply it to the cluster.
+### Pod Management
 
-- kubectl delete: deletes resources from your cluster. For example, kubectl delete pod <pod_name> deletes a specific pod.
+`kubectl run` - Create a new deployment or job with a pod template
+`kubectl expose` - Expose a deployment, replica set, or replication controller as a service
+`kubectl port-forward` - Forward one or more local ports to a pod
+`kubectl logs` - Print the logs for a container in a pod
 
-- kubectl create: creates resources in your cluster. For example, kubectl create -f <file_name> creates resources specified in a file.
+### Deployment Management
 
-- kubectl edit: edits a resource in your cluster. For example, kubectl edit pod <pod_name> opens an editor for you to edit the specified pod.
+`kubectl rollout` - Manage the rollout of a resource
+`kubectl scale` - Set a new size for a deployment, replica set, or replication controller
+`kubectl autoscale` - Auto-scale a deployment, replica set, or replication controller based on resource usage
+`kubectl update` - Update a deployment, replica set, or replication controller to a new version
 
-- kubectl exec: executes a command in a container in a pod. For example, kubectl exec -it <pod_name> command executes the specified command in a container in the specified pod.
+### Cluster Management
 
-- kubectl logs: retrieves logs from a container in a pod. For example, kubectl logs <pod_name> retrieves logs from the specified pod.
+`kubectl config` - Modify kubeconfig files
+`kubectl cluster-info` - Display cluster information
+`kubectl top` - Display Resource (CPU/Memory/Storage) usage
+`kubectl version` - Display the Kubernetes version running on the client and server
 
-- kubectl port-forward: forwards a local port to a port on a pod. For example, - kubectl port-forward <pod_name> 8080:80 forwards local port 8080 to port 80 on the specified pod.
-
-- kubectl label: adds or modifies labels on a resource. For example, kubectl label pod <pod_name> app=myapp adds the label "app=myapp" to the specified pod.
-
-These are just a few examples of the many kubectl commands available. You can find more information about kubectl and its commands in the official Kubernetes documentation.
+These are just a few examples of commonly used Kubernetes commands. For a full list of available commands, you can refer to the official Kubernetes documentation.
