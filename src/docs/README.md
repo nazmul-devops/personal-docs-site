@@ -40,7 +40,7 @@ A document about Docker Swarm dev environemt configuration for 3 tier applicatio
 
 by Kallol Biswas & Nazmul Islam (Swapan) - DevOps Engineer at InNeed Cloud
 
-## [Kubernetes](/docs/kubernetes/)
+## [Kubernetes Tutorial](/docs/kubernetes/)
 
 A document about kubernetes dev environemt configuration on local machine with minikube.
 
