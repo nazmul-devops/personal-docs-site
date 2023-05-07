@@ -61,6 +61,10 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 
 sudo systemctl status jenkins
+
+sudo usermod -aG docker jenkins
+sudo usermod -aG docker $USER
+sudo reboot
 ```
 
 ### Installation Error handling
