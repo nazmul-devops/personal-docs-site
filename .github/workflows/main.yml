@@ -12,6 +12,6 @@ jobs:
       env:
         ACCESS_TOKEN: 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
         TARGET_REPO: nazmul-devops/personal-docs-site
-        TARGET_BRANCH: dev
+        TARGET_BRANCH: gh-pages
         BUILD_SCRIPT: npm && npm run build
         BUILD_DIR: blog/.vuepress/dist/
