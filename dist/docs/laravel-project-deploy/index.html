@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Here we will deploy a php laravel webapp in a ubuntu server | Learn With Nazmul</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="nazmul-rnd-docs">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/nazmul/assets/css/0.styles.5932328c.css" as="style"><link rel="preload" href="/nazmul/assets/js/app.663a3c6c.js" as="script"><link rel="preload" href="/nazmul/assets/js/2.8e9339b6.js" as="script"><link rel="preload" href="/nazmul/assets/js/5.a463ed19.js" as="script"><link rel="prefetch" href="/nazmul/assets/js/10.4dde42ad.js"><link rel="prefetch" href="/nazmul/assets/js/11.1452f9ea.js"><link rel="prefetch" href="/nazmul/assets/js/12.13a678a6.js"><link rel="prefetch" href="/nazmul/assets/js/13.68da0424.js"><link rel="prefetch" href="/nazmul/assets/js/14.56a4e07c.js"><link rel="prefetch" href="/nazmul/assets/js/15.c3e87933.js"><link rel="prefetch" href="/nazmul/assets/js/16.d6f0c71a.js"><link rel="prefetch" href="/nazmul/assets/js/17.ffd933da.js"><link rel="prefetch" href="/nazmul/assets/js/18.0c9df6cc.js"><link rel="prefetch" href="/nazmul/assets/js/19.367b0342.js"><link rel="prefetch" href="/nazmul/assets/js/20.8961f135.js"><link rel="prefetch" href="/nazmul/assets/js/21.bc1084d3.js"><link rel="prefetch" href="/nazmul/assets/js/22.703297bf.js"><link rel="prefetch" href="/nazmul/assets/js/23.c6a9ac4e.js"><link rel="prefetch" href="/nazmul/assets/js/24.2921d58a.js"><link rel="prefetch" href="/nazmul/assets/js/25.9c443465.js"><link rel="prefetch" href="/nazmul/assets/js/26.57d702dc.js"><link rel="prefetch" href="/nazmul/assets/js/27.8069647e.js"><link rel="prefetch" href="/nazmul/assets/js/28.fe736223.js"><link rel="prefetch" href="/nazmul/assets/js/29.909d9609.js"><link rel="prefetch" href="/nazmul/assets/js/3.d7fe0734.js"><link rel="prefetch" href="/nazmul/assets/js/30.dfa34081.js"><link rel="prefetch" href="/nazmul/assets/js/31.232a5434.js"><link rel="prefetch" href="/nazmul/assets/js/32.05fc0891.js"><link rel="prefetch" href="/nazmul/assets/js/33.3d17c532.js"><link rel="prefetch" href="/nazmul/assets/js/34.7df65e7d.js"><link rel="prefetch" href="/nazmul/assets/js/35.bfeb0c9a.js"><link rel="prefetch" href="/nazmul/assets/js/36.6f7fd8bb.js"><link rel="prefetch" href="/nazmul/assets/js/37.1cd56856.js"><link rel="prefetch" href="/nazmul/assets/js/38.89079668.js"><link rel="prefetch" href="/nazmul/assets/js/4.5dbfb5ac.js"><link rel="prefetch" href="/nazmul/assets/js/6.73c0716d.js"><link rel="prefetch" href="/nazmul/assets/js/7.99d487d2.js"><link rel="prefetch" href="/nazmul/assets/js/8.a46af778.js"><link rel="prefetch" href="/nazmul/assets/js/9.97ca1f6c.js">
+    <link rel="stylesheet" href="/nazmul/assets/css/0.styles.5932328c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/nazmul/" class="home-link router-link-active"><!----> <span class="site-name">Learn With Nazmul</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/nazmul/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/nazmul/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><a href="https://kachamaal.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  business
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/nazmul/docs/" class="nav-link router-link-active">
+  Docs
+</a></div><div class="nav-item"><a href="/nazmul/tutorial/" class="nav-link">
+  Tutorial
+</a></div><div class="nav-item"><a href="https://kachamaal.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  business
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Here we will deploy a php laravel webapp in a ubuntu server</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/nazmul/docs/laravel-project-deploy/#prerequisites-git-php7-4-mysql-server-composer" class="sidebar-link">prerequisites - (git, php7.4, mysql-server, composer)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-01-installing-php7-4-on-ubuntu-22-04" class="sidebar-link">Step 01: (Installing php7.4 on ubuntu 22.04)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-02-install-composer-for-dependency-management" class="sidebar-link">Step 02: (Install Composer for dependency management)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-03-installing-mysql-server-and-create-demo-database-for-project" class="sidebar-link">Step 03: (Installing Mysql-server and create demo database for project)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#configuring-mysql" class="sidebar-link">Configuring MySQL</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#creating-a-dedicated-mysql-user-and-granting-privileges-optional" class="sidebar-link">Creating a Dedicated MySQL User and Granting Privileges (Optional)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#testing-mysql" class="sidebar-link">Testing MySQL</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-04-cloning-git-repo-to-root-directory" class="sidebar-link">Step 04: (Cloning git repo to root directory)</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-05-configure-web-server" class="sidebar-link">Step 05: Configure web server</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-06-configure-application" class="sidebar-link">Step 06: Configure application</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/nazmul/docs/laravel-project-deploy/#step-06-how-to-bind-with-your-domain-name" class="sidebar-link">Step 06: How to bind with your domain name</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="here-we-will-deploy-a-php-laravel-webapp-in-a-ubuntu-server"><a href="#here-we-will-deploy-a-php-laravel-webapp-in-a-ubuntu-server" class="header-anchor">#</a> Here we will deploy a php laravel webapp in a ubuntu server</h1> <h2 id="prerequisites-git-php7-4-mysql-server-composer"><a href="#prerequisites-git-php7-4-mysql-server-composer" class="header-anchor">#</a> prerequisites - (git, php7.4, mysql-server, composer)</h2> <h2 id="step-01-installing-php7-4-on-ubuntu-22-04"><a href="#step-01-installing-php7-4-on-ubuntu-22-04" class="header-anchor">#</a> Step 01: (Installing php7.4 on ubuntu 22.04)</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token function">sudo</span> <span class="token function">apt</span> update
+	
+	<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> software-properties-common
+
+	<span class="token function">sudo</span> add-apt-repository ppa:ondrej/php
+
+	<span class="token function">sudo</span> <span class="token function">apt</span> update
+
+	<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> php7.4
+
+	php <span class="token parameter variable">-v</span>  <span class="token punctuation">(</span>To verify Installation<span class="token punctuation">)</span>
+
+	<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> php7.4-<span class="token punctuation">{</span>cli,common,curl,zip,gd,mysql,xml,mbstring,json,intl<span class="token punctuation">}</span>
+</code></pre></div><h2 id="step-02-install-composer-for-dependency-management"><a href="#step-02-install-composer-for-dependency-management" class="header-anchor">#</a> Step 02: (Install Composer for dependency management)</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	php <span class="token parameter variable">-r</span> <span class="token string">&quot;copy('https://getcomposer.org/installer', 'composer-setup.php');&quot;</span>
+	php <span class="token parameter variable">-r</span> <span class="token string">&quot;if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;&quot;</span>
+	php composer-setup.php
+	php <span class="token parameter variable">-r</span> <span class="token string">&quot;unlink('composer-setup.php');&quot;</span>
+
+	 php composer.phar <span class="token parameter variable">--version</span>
+
+	 <span class="token function">sudo</span> <span class="token function">mv</span> composer.phar /usr/local/bin/composer
+
+	 <span class="token builtin class-name">cd</span> /usr/local/bin
+
+	 <span class="token function">sudo</span> <span class="token function">chmod</span> u+x <span class="token function">composer</span>
+
+     <span class="token function">composer</span> <span class="token parameter variable">--version</span>
+</code></pre></div><h2 id="step-03-installing-mysql-server-and-create-demo-database-for-project"><a href="#step-03-installing-mysql-server-and-create-demo-database-for-project" class="header-anchor">#</a> Step 03: (Installing Mysql-server and create demo database for project)</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token function">sudo</span> <span class="token function">apt</span> update
+
+	<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> mysql-server
+
+	<span class="token function">sudo</span> systemctl status mysql
+
+    <span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> mysql
+</code></pre></div><h2 id="configuring-mysql"><a href="#configuring-mysql" class="header-anchor">#</a> Configuring MySQL</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token function">sudo</span> mysql
+
+	ALTER <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> IDENTIFIED WITH mysql_native_password BY <span class="token string">'your-password'</span><span class="token punctuation">;</span>
+
+	<span class="token builtin class-name">exit</span>
+
+	mysql <span class="token parameter variable">-u</span> root <span class="token parameter variable">-p</span>
+
+	create database your-database-name<span class="token punctuation">;</span>
+</code></pre></div><h2 id="creating-a-dedicated-mysql-user-and-granting-privileges-optional"><a href="#creating-a-dedicated-mysql-user-and-granting-privileges-optional" class="header-anchor">#</a> Creating a Dedicated MySQL User and Granting Privileges (Optional)</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token function">sudo</span> mysql
+
+	mysql <span class="token parameter variable">-u</span> root <span class="token parameter variable">-p</span>
+
+	CREATE <span class="token environment constant">USER</span> <span class="token string">'nazmul'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'your-password'</span><span class="token punctuation">;</span>
+
+	GRANT PRIVILEGE ON database.table TO <span class="token string">'nazmul'</span>@<span class="token string">'host'</span><span class="token punctuation">;</span> <span class="token punctuation">(</span>or<span class="token punctuation">)</span>
+
+	GRANT ALL PRIVILEGES ON *.* TO <span class="token string">'nazmul'</span>@<span class="token string">'localhost'</span> WITH GRANT OPTION<span class="token punctuation">;</span>
+
+	FLUSH PRIVILEGES<span class="token punctuation">;</span>
+
+	mysql<span class="token operator">&gt;</span> <span class="token builtin class-name">exit</span>
+
+	mysql <span class="token parameter variable">-u</span> nazmul <span class="token parameter variable">-p</span>
+</code></pre></div><h2 id="testing-mysql"><a href="#testing-mysql" class="header-anchor">#</a> Testing MySQL</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token function">sudo</span> systemctl status mysql
+
+	<span class="token function">sudo</span> mysqladmin <span class="token parameter variable">-p</span> <span class="token parameter variable">-u</span> nazmul version
+</code></pre></div><h2 id="step-04-cloning-git-repo-to-root-directory"><a href="#step-04-cloning-git-repo-to-root-directory" class="header-anchor">#</a> Step 04: (Cloning git repo to root directory)</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token builtin class-name">cd</span> /var/www/html
+
+	<span class="token function">sudo</span> <span class="token function">git</span> clone https://gitlab.com/niswapan/abcfan-website.git
+
+	<span class="token function">sudo</span> <span class="token function">mv</span> abcfan-website abc
+
+	<span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> ubuntu:ubuntu /var/www/html/abc/*
+
+	<span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">777</span> /var/www/html/abc/*
+
+	<span class="token builtin class-name">cd</span> abc
+
+	<span class="token function">sudo</span> <span class="token function">cp</span> .env.example .env
+	
+	<span class="token function">sudo</span> <span class="token function">nano</span> .env <span class="token punctuation">(</span>change the database name as your created your-database-name and root user password<span class="token punctuation">)</span>
+
+	<span class="token function">composer</span> <span class="token function">install</span>
+</code></pre></div><h2 id="step-05-configure-web-server"><a href="#step-05-configure-web-server" class="header-anchor">#</a> Step 05: Configure web server</h2> <div class="language-sh extra-class"><pre class="language-sh"><code>	<span class="token builtin class-name">cd</span> /etc/apache2/sites-enabled
+
+	<span class="token function">sudo</span> <span class="token function">nano</span> 000-default.conf
+
+	<span class="token function">paste</span> below texts and save <span class="token operator">&amp;</span> <span class="token builtin class-name">exit</span>
+
+	 ServerAdmin webmaster@localhost
+         DocumentRoot /var/www/html/abc/public
+
+         <span class="token operator">&lt;</span>Directory /var/www/html/abc/public<span class="token operator">&gt;</span>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+         <span class="token operator">&lt;</span>/Directory<span class="token operator">&gt;</span>
+
+	<span class="token function">sudo</span> a2enmod rewrite
+
+	<span class="token function">sudo</span> systemctl restart apache2
+</code></pre></div><h2 id="step-06-configure-application"><a href="#step-06-configure-application" class="header-anchor">#</a> Step 06: Configure application</h2> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">open</span> your browser and hit your-server-ip
+
+<span class="token builtin class-name">cd</span> /var/www/html/abc/
+
+php artisan key:generate
+
+php artisan migrate
+
+</code></pre></div><h2 id="step-06-how-to-bind-with-your-domain-name"><a href="#step-06-how-to-bind-with-your-domain-name" class="header-anchor">#</a> Step 06: How to bind with your domain name</h2> <ol><li>Goto Route53 on aws console and Create a hosted zone with your valid domain name in my case (abcfanbd.com)</li></ol> <p><img src="/nazmul/assets/img/route-53-1.0245bb78.png" alt="create-aws-route-53-hosted-zone"></p> <ol start="2"><li><p>Copy 4 NS records from aws route 53 hosted zone<br> <img src="/nazmul/assets/img/route-53-2.0785e103.png" alt="copy-aws-route-53-hosted-zones-ns-records"></p></li> <li><p>Paste on your domain provider dns nameserver. In my case its Godaddy.com</p></li></ol> <p><img src="/nazmul/assets/img/godaddy-paste.a205741c.png" alt="paste-ns-records-on-godaddy"></p> <ol start="4"><li>On your aws hosted zone add 3 more simple A record</li></ol> <p><img src="/nazmul/assets/img/route-53-3.0fbbb06a.png" alt="add-3-a-records"></p> <ol start="5"><li>Finally Hit your domain abcfanbd.com</li></ol> <p><img src="/nazmul/assets/img/route-53-4.165e2395.png" alt="your-webapp-is-live-now"></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/nazmul/assets/js/app.663a3c6c.js" defer></script><script src="/nazmul/assets/js/2.8e9339b6.js" defer></script><script src="/nazmul/assets/js/5.a463ed19.js" defer></script>
+  </body>
+</html>
