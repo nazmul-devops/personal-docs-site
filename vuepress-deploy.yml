@@ -10,8 +10,8 @@ jobs:
     - name: vuepress-deploy
       uses: jenkey2011/vuepress-deploy@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: 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
         TARGET_REPO: nazmul-devops/personal-docs-site
-        TARGET_BRANCH: main
+        TARGET_BRANCH: dev
         BUILD_SCRIPT: npm && npm run build
         BUILD_DIR: blog/.vuepress/dist/
